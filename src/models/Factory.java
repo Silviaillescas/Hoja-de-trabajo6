@@ -1,23 +1,22 @@
 package models;
-import interfaces.IMap;
-import models.HashMap;
-import models.TreeMap;
-import models.LinkedHashMap;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
+public class Factory{
 
-public class Factory<T> {
-
-	public IMap<T> getDataStructure(String type){
+	public Map<String, String> getDataStructure(String type){
         
         switch(type){
             case "HashMap":
-                return new HashMap<T>();
+                return new HashMap<String, String>();
             case "Array":
-            	return new TreeMap<T>();
+            	return new TreeMap<String, String>();
             case "TreeMap":
-                return new LinkedHashMap<T>();
+                return new LinkedHashMap<String, String>();
             default:
-                return new HashMap<T>();
+            	return new TreeMap<String, String>();
         }
     }
 	
