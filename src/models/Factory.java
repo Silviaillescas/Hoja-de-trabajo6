@@ -7,17 +7,17 @@ import java.util.LinkedList;
 
 public class Factory{
 
-	public Map<String, LinkedList> getDataStructure(String type){
+	public Map<String, LinkedList<String>> getDataStructure(String type){
         
         switch(type){
             case "HashMap":
-                return new HashMap<String, LinkedList>();
+                return new HashMap<String, LinkedList<String>>();
             case "Array":
-            	return new TreeMap<String, LinkedList>();
+            	return new TreeMap<String, LinkedList<String>>();
             case "TreeMap":
-                return new LinkedHashMap<String, LinkedList>();
+                return new LinkedHashMap<String, LinkedList<String>>();
             default:
-            	return new TreeMap<String, LinkedList>();
+            	return new TreeMap<String, LinkedList<String>>();
         }
     }
 	

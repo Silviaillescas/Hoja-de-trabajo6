@@ -10,7 +10,7 @@ import models.Factory;
 	public class HT5 {
 		
 		Factory factory = new Factory();
-		Map<String, LinkedList> ourMap;
+		Map<String, LinkedList<String>> ourMap;
 		
 	public static void main(String[] args) {
 			
@@ -76,7 +76,7 @@ import models.Factory;
 		    	
 		    	//Añadimos las categorías y productos
 		    	if (!ourMap.containsKey(parts[0])) {
-		    		   ourMap.put(parts[0], new LinkedList());
+		    		   ourMap.put(parts[0], new LinkedList<String>());
 		    		}
 
 		    	ourMap.get(parts[0]).add(parts[1]);
@@ -116,19 +116,45 @@ import models.Factory;
 							System.out.println("No existe ese producto en el inventario");
 				    		}
 						else {
-						System.out.println("El producto ha sido encontrada");
+						System.out.println("El producto ha sido encontrado");
 						System.out.println(productoC + " pertenece a la categoría: ");
 				    	ourMap.get(productoC);
 						}
 						break;
 					
 					case "3":
-						System.out.println("Categorías y productos del inventario: ");
+						System.out.println("Inventario: ");
+						System.out.println(" ");
+						System.out.println(ourMap);
+						System.out.println(" ");
+						for (String key : ourMap.keySet()) {
+				            System.out.println(key);
+				            System.out.println(ourMap.get(key));
+				        }
+						break;
+						
+					case "4":
+						System.out.println("Productos organizados por categoría: ");
 						System.out.println(" ");
 						for (String key : ourMap.keySet()) {
 				            System.out.println("Categoría: " + key);
 				            System.out.println("Producto: " + ourMap.get(key));
 				        }
+						break;
+						
+					case "5":
+						System.out.println("Categorías existentes: ");
+						System.out.println(" ");
+						System.out.println(ourMap.keySet());
+						System.out.println(" ");
+						break;
+						
+					case "6":
+						System.out.println("Productos existentes: ");
+						System.out.println(" ");
+						System.out.println(ourMap.values());
+						System.out.println(" ");
+						
 						break;
 						
 					case "7":
@@ -178,8 +204,8 @@ import models.Factory;
 		System.out.println("2. Mostrar categoría según producto");
 		System.out.println("3. Mostrar productos y categorías");
 		System.out.println("4. Mostrar productos organizados por categoría");
-		System.out.println("5. Productos y categorías existentes");
-		System.out.println("6. Productos y categorías existentes por tipo");
+		System.out.println("5. Categorías existentes");
+		System.out.println("6. Productos existentes");
 		System.out.println("7. Salir");
 	}
 	
