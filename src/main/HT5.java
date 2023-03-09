@@ -3,13 +3,14 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.Scanner;
+import java.util.LinkedList;
 import java.util.Map;
 import models.Factory;
 
 	public class HT5 {
 		
 		Factory factory = new Factory();
-		Map<String, String> ourMap;
+		Map<String, LinkedList> ourMap;
 		
 	public static void main(String[] args) {
 			
@@ -73,34 +74,60 @@ import models.Factory;
 		    	msg=linea;
 		    	String[] parts = msg.split("\\|");
 		    	
-		    	//Prueba
-		    	System.out.println(parts[0]);
-		    	System.out.println(parts[1]);
-		    	
 		    	//Añadimos las categorías y productos
-		    	ourMap.put(parts[0], parts[1]);
+		    	if (!ourMap.containsKey(parts[0])) {
+		    		   ourMap.put(parts[0], new LinkedList());
+		    		}
+
+		    	ourMap.get(parts[0]).add(parts[1]);
 		    	
 		    	
 		    }
 		    
 		    String option2 = "";
-			menu2();
-			while (!option.equals("7")) {
+			while (!option2.equals("7")) {
+				menu2();
 				option2 = "" + entrada.nextLine();
 				
 				switch (option2) {
 				
 					case "1":
 						System.out.println("¿A qué categoría deseas añadir el producto?");
+						String categoria = "" + entrada.nextLine();
+						
+						if (!ourMap.containsKey(categoria+" ")) {
+							System.out.println("No existe esa categoría en el inventario");
+				    		}
+						else {
+						System.out.println("La categoría ha sido encontrada");
+						System.out.println("Escribe la descripción del producto: ");
+						String producto = "" + entrada.nextLine();
+				    	ourMap.get(categoria+" ").add(producto);
+				    	System.out.println("Se ha añadido con éxito el nuevo elemento");
+						}
 						
 						break;
 					
 					case "2":
+						System.out.println("Escribe el producto por el cual quieres buscar una categoría:");
+						String productoC = "	" + entrada.nextLine();
+						
+						if (!ourMap.containsValue(productoC)) {
+							System.out.println("No existe ese producto en el inventario");
+				    		}
+						else {
+						System.out.println("El producto ha sido encontrada");
+						System.out.println(productoC + " pertenece a la categoría: ");
+				    	ourMap.get(productoC);
+						}
 						break;
 					
 					case "3":
+						System.out.println("Categorías y productos del inventario: ");
+						System.out.println(" ");
 						for (String key : ourMap.keySet()) {
-				            System.out.println("Categoría: " + key + ", Producto: " + ourMap.get(key));
+				            System.out.println("Categoría: " + key);
+				            System.out.println("Producto: " + ourMap.get(key));
 				        }
 						break;
 						
